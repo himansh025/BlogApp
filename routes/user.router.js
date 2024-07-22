@@ -1,4 +1,4 @@
-import express from "express";
+import express, { json } from "express";
 import bcrypt from "bcrypt";
 import { createtoken } from "../services/auth.js";
 import { User } from "../models/user.model.js";
@@ -28,7 +28,7 @@ router.post("/signup", async (req, res) => {
     res.status(400).json({ error: error.message });
   }
 });
-router.post("/login", async (req, res) => {
+router.post("/signin", async (req, res) => {
   const { email, password } = req.body;
 
   try {
@@ -59,8 +59,13 @@ user.password="";
 });
 
 
-router.get("/login", (req, res) => {
+router.get("/signin", (req, res) => {
   res.render("login");
 });
+
+
+router.get("/logout",(req,res)=>{
+  res.clearCookie("token").render("login")
+})
 
 export default router;

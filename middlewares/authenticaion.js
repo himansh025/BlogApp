@@ -21,6 +21,8 @@ function checkforauthenticationcookie(cookieName) {
     // Always call next() to pass control to the next middleware or route handler
     next();
   };
+
+  
 }
 
 export { checkforauthenticationcookie };

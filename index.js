@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv'
 import { User } from './models/user.model.js'; 
 import cookieParser from 'cookie-parser';
+import blogRouter from './routes/blog.router.js'
 import userRouter from './routes/user.router.js'; 
 import {checkforauthenticationcookie} from './middlewares/authenticaion.js';
 const app = express();
@@ -22,6 +23,8 @@ mongoose.connect('mongodb://localhost:27017/test')
 
 app.use('/',userRouter)
 app.use('/user', userRouter);
+app.use('/blog', blogRouter);
+
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
